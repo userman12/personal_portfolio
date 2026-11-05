@@ -19,8 +19,7 @@ themeBtn.addEventListener('click', () => {
 });
 
 document.querySelectorAll('.copy-btn').forEach((btn) => {
-  const label = btn.querySelector('.copy-label');
-  const idle = label.textContent;
+  let timer;
   btn.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(btn.dataset.copy);
@@ -32,9 +31,11 @@ document.querySelectorAll('.copy-btn').forEach((btn) => {
       getSelection().addRange(range);
       return;
     }
-    label.textContent = btn.dataset.done;
+    // Il testo svanisce e compare la spunta; lo screen reader sente comunque "Copiata"
+    btn.classList.add('is-copied');
     status.textContent = btn.dataset.done;
-    setTimeout(() => { label.textContent = idle; status.textContent = ''; }, 2000);
+    clearTimeout(timer);
+    timer = setTimeout(() => { btn.classList.remove('is-copied'); status.textContent = ''; }, 2000);
   });
 });
 

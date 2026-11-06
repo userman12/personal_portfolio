@@ -14,7 +14,9 @@ applyTheme(root.dataset.theme === 'light' ? 'light' : 'dark');
 
 themeBtn.addEventListener('click', () => {
   const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+  root.classList.add('theme-switching');
   applyTheme(next);
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switching')));
   try { localStorage.setItem('theme', next); } catch (e) {}
 });
 
@@ -42,6 +44,33 @@ document.querySelectorAll('.copy-btn').forEach((btn) => {
 // Barra in alto: visibile solo dopo aver superato il riquadro contatti.
 // `inert` la nasconde anche a tastiera e screen reader.
 const topbar = document.querySelector('.topbar');
+const cta = document.querySelector('.tile-cta');
+
+// Cambio lingua: la nuova pagina riparte dallo stesso riquadro, non dall'inizio.
+// Le due pagine hanno gli stessi riquadri nello stesso ordine.
+const tiles = [...document.querySelectorAll('main > section')];
+document.querySelectorAll('.lang a:not([aria-current])').forEach((a) => {
+  a.addEventListener('click', () => {
+    const i = tiles.findIndex((t) => t.getBoundingClientRect().bottom > 0);
+    if (i < 0 || scrollY === 0) return;
+    const r = tiles[i].getBoundingClientRect();
+    try { sessionStorage.setItem('langScroll', JSON.stringify([i, -r.top / r.height])); } catch (e) {}
+  });
+});
+try {
+  const saved = JSON.parse(sessionStorage.getItem('langScroll'));
+  sessionStorage.removeItem('langScroll');
+  if (saved && tiles[saved[0]]) {
+    const t = tiles[saved[0]];
+    history.scrollRestoration = 'manual';
+    scrollTo({ top: t.offsetTop + saved[1] * t.offsetHeight, behavior: 'instant' });
+    // Barra già nello stato giusto al primo frame, senza animazione di entrata
+    topbar.style.transition = 'none';
+    topbar.inert = cta.getBoundingClientRect().bottom > 0;
+    requestAnimationFrame(() => requestAnimationFrame(() => topbar.style.removeProperty('transition')));
+  }
+} catch (e) {}
+
 new IntersectionObserver(([e]) => {
   topbar.inert = e.isIntersecting || e.boundingClientRect.top > 0;
-}).observe(document.querySelector('.tile-cta'));
+}).observe(cta);

@@ -24,7 +24,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../style.css?v=27">
+  <link rel="stylesheet" href="../style.css?v=28">
   <script>
     try {
       const t = localStorage.getItem('theme');
@@ -147,7 +147,8 @@
     <section class="tile lg-glass tile-lab" id="lab" aria-labelledby="lab-title">
       <h2 id="lab-title">Things I've built</h2>
       <p class="muted lab-intro">Personal projects I conceived, ran and built on my own, from idea to release.</p>
-      <article class="project">
+      <div class="projects">
+      <article class="project project-hero">
         <a class="shot" href="https://userman12.github.io/ai-adoption-map/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
           <img src="../assets/ai-adoption-map-800.webp" srcset="../assets/ai-adoption-map-800.webp 800w, ../assets/ai-adoption-map-1600.webp 1600w" sizes="(min-width: 1024px) 520px, 100vw" width="1600" height="1000" loading="lazy" decoding="async" alt="">
         </a>
@@ -213,6 +214,7 @@
           </div>
         </div>
       </article>
+      </div>
     </section>
 
     <!-- Come lavoro -->

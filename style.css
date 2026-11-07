@@ -190,6 +190,7 @@ svg.fill { fill: currentColor; stroke: none; }
   border-radius: 999px; font: 600 .9375rem/1 var(--font-head); white-space: nowrap;
 }
 .pill-solid { background: var(--accent); color: var(--on-accent); }
+[data-theme="light"] .topbar .pill-solid { background: var(--indigo); color: var(--yellow); }
 .pill-line { border: 1px solid var(--line); }
 .pill-line:hover { border-color: var(--muted); }
 @media (max-width: 639px) { .topbar-id span { display: none; } }

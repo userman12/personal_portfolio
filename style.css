@@ -48,10 +48,9 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-/* Cambio lingua: dissolvenza tra le due pagine (Chrome, Safari 18.2+). Dock e barra restano ferme. */
+/* Cambio lingua: dissolvenza tra le due pagine (Chrome, Safari 18.2+).
+   Niente view-transition-name sulle barre in vetro: catturate a parte perdono vetro e angoli e appaiono come un rettangolo. */
 @view-transition { navigation: auto; }
-.dock { view-transition-name: dock; }
-.topbar { view-transition-name: topbar; }
 /* Cambio tema: tutto cambia nello stesso istante, senza transizioni sfalsate */
 .theme-switching, .theme-switching * { transition: none !important; }
 html { scroll-behavior: smooth; scrollbar-color: var(--line) var(--bg); accent-color: var(--accent-ink); }

@@ -46,6 +46,9 @@ document.querySelectorAll('.copy-btn').forEach((btn) => {
 const topbar = document.querySelector('.topbar');
 const cta = document.querySelector('.tile-cta');
 
+// La lingua già attiva non ricarica la pagina
+document.querySelector('.lang a[aria-current]').addEventListener('click', (e) => e.preventDefault());
+
 // Cambio lingua: la nuova pagina riparte dallo stesso riquadro, non dall'inizio.
 // Le due pagine hanno gli stessi riquadri nello stesso ordine.
 const tiles = [...document.querySelectorAll('main > section')];

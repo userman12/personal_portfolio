@@ -165,7 +165,7 @@ svg.fill { fill: currentColor; stroke: none; }
 @media (min-width: 640px) { body { padding-bottom: 5rem; } } /* spazio per la barra fissa in basso */
 [data-theme="light"] .dock { --lg-glass: rgb(255 255 255 / .65); }
 .dock .icon-btn { border: 0; }
-.dock .icon-btn:hover, .dock .lang a:hover { background: var(--line); }
+.dock .icon-btn:hover, .dock .lang a:not([aria-current]):hover { background: var(--line); }
 .dock-cta {
   display: grid; place-items: center; min-height: 44px; padding: 0 1.1rem; border-radius: 999px;
   background: var(--accent); color: var(--on-accent); font: 600 .9375rem/1 var(--font-head);

@@ -211,6 +211,17 @@ h1 { font: 700 clamp(2.5rem, 7vw, 4.5rem)/1 var(--font-head); letter-spacing: -0
 .facts dt { font: 500 .75rem/1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
 .facts dd { margin: 0; font-weight: 500; line-height: 1.4; text-wrap: pretty; }
 .tile-intro > .text-link { align-self: flex-start; }
+@media (min-width: 1024px) {
+  /* Desktop: nome e frase a sinistra, le tre righe a destra per tutta l'altezza */
+  .tile-intro { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); grid-template-rows: auto auto 1fr; gap: 1.25rem 2.5rem; }
+  .tile-intro > :not(.facts) { grid-column: 1; }
+  .tile-intro h1 { margin-top: 0; padding-top: 0; }
+  .tile-intro > .text-link { align-self: end; }
+  .facts { grid-column: 2; grid-row: 1 / -1; grid-template-columns: none; grid-auto-rows: 1fr; gap: 0; margin: 0; padding: 0 0 0 2.5rem; border-top: 0; border-left: 1px solid var(--line); }
+  .facts > div { padding-top: 1.25rem; }
+  .facts > div:first-child { padding-top: .35rem; } /* allinea l'etichetta alla parte alta del nome */
+  .facts > div + div { border-top: 1px solid var(--line); }
+}
 
 /* Pillole nel testo: icona + parola chiave su fondo colorato tenue */
 .chip {

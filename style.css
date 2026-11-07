@@ -75,15 +75,14 @@ svg.fill { fill: currentColor; stroke: none; }
 :focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 3px; }
 :target { scroll-margin-top: 6rem; } /* spazio per la barra fissa in alto */
 
-/* Griglia: 1 colonna sotto i 1024px, 4 colonne su desktop */
+/* Griglia: 1 colonna sotto i 1024px; su desktop presentazione e contatti in proporzione 2:1, il resto a tutta larghezza */
 .bento {
   width: 100%; max-width: 1180px; margin: 0 auto; padding: 1rem;
   display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr);
 }
 @media (min-width: 640px) { .bento { padding: 1.5rem; } }
 @media (min-width: 1024px) {
-  .bento { grid-template-columns: repeat(4, minmax(0, 1fr)); padding-top: 3rem; }
-  .tile-intro { grid-column: span 3; }
+  .bento { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); padding-top: 3rem; }
   .tile-lab, .tile-method, .tile-services { grid-column: 1 / -1; }
 }
 

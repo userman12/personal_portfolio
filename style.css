@@ -16,7 +16,7 @@
   --muted: #cdd6ff;
   --grid: rgb(255 255 255 / .06);
   /* Vetro (variabili lette da glass.js) */
-  --lg-glass: rgb(16 4 90 / .18);
+  --lg-glass: rgb(10 2 64 / .75);
   --lg-edge: rgb(255 255 255 / .28);
   --lg-drop: transparent;
   --lg-rim-shine: .55;
@@ -123,7 +123,7 @@ svg.fill { fill: currentColor; stroke: none; }
   backdrop-filter: blur(var(--lg-blur, 3px)) var(--lg-filter, saturate(1.8));
 }
 @media (prefers-reduced-transparency: reduce) {
-  :root { --lg-glass: #150480; }
+  :root { --lg-glass: #120170; }
   [data-theme="light"] { --lg-glass: #ffffff; }
 }
 

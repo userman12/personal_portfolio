@@ -206,11 +206,11 @@ svg.fill { fill: currentColor; stroke: none; }
 h1 { font: 700 clamp(2.5rem, 7vw, 4.5rem)/1 var(--font-head); letter-spacing: -0.035em; margin-top: auto; padding-top: 1.5rem; }
 .headline { font: 500 clamp(1.125rem, 2.2vw, 1.5rem)/1.35 var(--font-head); max-width: 32ch; letter-spacing: -0.01em; }
 .headline em { display: block; }
-.bio { max-width: 60ch; }
-.intro-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; margin-top: .5rem; }
-.roles { display: flex; flex-wrap: wrap; gap: .5rem; }
-.roles li { padding: .35rem .8rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
-.meta { padding-top: 1rem; border-top: 1px solid var(--line); }
+.facts { display: grid; gap: 1rem 2rem; margin-top: .5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+@media (min-width: 768px) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.facts dt { font: 500 .75rem/1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+.facts dd { margin: 0; font-weight: 500; line-height: 1.4; text-wrap: pretty; }
+.tile-intro > .text-link { align-self: flex-start; }
 
 /* Pillole nel testo: icona + parola chiave su fondo colorato tenue */
 .chip {

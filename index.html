@@ -22,10 +22,12 @@
   <link rel="alternate" hreflang="en" href="https://userman12.github.io/personal_portfolio/en/">
   <link rel="alternate" hreflang="x-default" href="https://userman12.github.io/personal_portfolio/">
   <link rel="prefetch" href="en/">
+  <!-- Il browser non disegna la pagina finché non arriva a #ready: niente salto al cambio lingua -->
+  <link rel="expect" href="#ready" blocking="render">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=41">
+  <link rel="stylesheet" href="style.css?v=42">
   <script>
     try {
       const t = localStorage.getItem('theme');
@@ -248,7 +250,9 @@
     </ul>
   </footer>
 
-  <script src="main.js?v=11" defer></script>
+  <!-- Senza defer: posiziona la pagina prima del primo disegno (vedi rel="expect" nell'head) -->
+  <script src="main.js?v=12"></script>
+  <div id="ready" hidden></div>
   <script src="glass.js?v=5" defer></script>
 </body>
 </html>

@@ -49,24 +49,37 @@ const cta = document.querySelector('.tile-cta');
 // La lingua già attiva non ricarica la pagina
 document.querySelector('.lang a[aria-current]').addEventListener('click', (e) => e.preventDefault());
 
-// Cambio lingua: la nuova pagina riparte dallo stesso riquadro, non dall'inizio.
-// Le due pagine hanno gli stessi riquadri nello stesso ordine.
-const tiles = [...document.querySelectorAll('main > section')];
+// Cambio lingua: la nuova pagina si apre allo stesso punto, al pixel.
+// Le due pagine hanno gli stessi elementi nello stesso ordine: salvo quale titolo/paragrafo
+// è più vicino alla cima dello schermo e a che distanza, e lo rimetto lì.
+const anchors = () => [...document.querySelectorAll('main :is(h1,h2,h3,p,li,img,a.btn)')];
 document.querySelectorAll('.lang a:not([aria-current])').forEach((a) => {
   a.addEventListener('click', () => {
-    const i = tiles.findIndex((t) => t.getBoundingClientRect().bottom > 0);
-    if (i < 0 || scrollY === 0) return;
-    const r = tiles[i].getBoundingClientRect();
-    try { sessionStorage.setItem('langScroll', JSON.stringify([i, -r.top / r.height])); } catch (e) {}
+    if (scrollY === 0) return;
+    let best = -1, top = Infinity;
+    anchors().forEach((el, i) => {
+      const t = el.getBoundingClientRect().top;
+      if (t >= 0 && t < top) { top = t; best = i; }
+    });
+    if (best < 0) return;
+    try { sessionStorage.setItem('langScroll', JSON.stringify([best, top])); } catch (e) {}
   });
 });
 try {
   const saved = JSON.parse(sessionStorage.getItem('langScroll'));
   sessionStorage.removeItem('langScroll');
-  if (saved && tiles[saved[0]]) {
-    const t = tiles[saved[0]];
+  if (saved) {
     history.scrollRestoration = 'manual';
-    scrollTo({ top: t.offsetTop + saved[1] * t.offsetHeight, behavior: 'instant' });
+    const place = () => {
+      const el = anchors()[saved[0]];
+      if (el) scrollTo({ top: scrollY + el.getBoundingClientRect().top - saved[1], behavior: 'instant' });
+    };
+    place();
+    // Se font o immagini cambiano l'impaginazione, riallinea, finché l'utente non scorre da solo
+    let moved = false;
+    ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach((t) => addEventListener(t, () => { moved = true; }, { once: true, passive: true }));
+    document.fonts.ready.then(() => { if (!moved) place(); });
+    addEventListener('load', () => { if (!moved) place(); });
     // Barra già nello stato giusto al primo frame, senza animazione di entrata
     topbar.style.transition = 'none';
     topbar.inert = cta.getBoundingClientRect().bottom > 0;

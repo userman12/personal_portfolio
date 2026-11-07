@@ -51,6 +51,7 @@
 /* Cambio lingua: dissolvenza tra le due pagine (Chrome, Safari 18.2+).
    Niente view-transition-name sulle barre in vetro: catturate a parte perdono vetro e angoli e appaiono come un rettangolo. */
 @view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
 /* Cambio tema: tutto cambia nello stesso istante, senza transizioni sfalsate */
 .theme-switching, .theme-switching * { transition: none !important; }
 html { scroll-behavior: smooth; scrollbar-color: var(--line) var(--bg); accent-color: var(--accent-ink); }

@@ -330,17 +330,19 @@ h1 { font: 700 clamp(2.5rem, 7vw, 4.5rem)/1 var(--font-head); letter-spacing: -0
 .method-head { display: grid; gap: .75rem; }
 .tile-method h2 { font-size: clamp(1.75rem, 3.6vw, 2.75rem); line-height: 1.08; letter-spacing: -0.03em; max-width: 22ch; }
 .method-head p { max-width: 58ch; }
-.steps { display: grid; counter-reset: none; }
-.steps li { position: relative; display: grid; gap: .35rem; align-content: start; padding: 0 0 1.75rem 1.75rem; border-left: 2px solid var(--quiet-ink); }
+.steps { display: grid; margin-left: 18px; } /* spazio per le icone a cavallo della linea */
+.steps li { position: relative; display: grid; gap: .35rem; align-content: start; padding: .35rem 0 1.75rem 2.25rem; border-left: 2px solid var(--quiet-ink); }
 .steps li:last-child { padding-bottom: 0; }
-.steps li::before { content: ""; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--quiet-ink); }
+/* Icona della fase sulla linea, al posto del pallino */
+.step-icon { position: absolute; left: -19px; top: 0; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bg); border: 2px solid var(--quiet-ink); color: var(--quiet-ink); }
+.step-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 .step-n { color: var(--quiet-ink); line-height: 1; }
 .steps p { color: var(--muted); }
 @media (min-width: 900px) {
   .method-head { grid-template-columns: 1.3fr 1fr; align-items: end; gap: 2rem; }
-  .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  .steps li { padding: 1.75rem 1.5rem 0 0; border-left: 0; border-top: 2px solid var(--quiet-ink); }
-  .steps li::before { left: 0; top: -7px; }
+  .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 1rem 0 0; }
+  .steps li { padding: 2.25rem 1.5rem 0 0; border-left: 0; border-top: 2px solid var(--quiet-ink); }
+  .step-icon { left: 0; top: -19px; }
   .steps li:last-child { padding-right: 0; }
 }
 

@@ -16,7 +16,7 @@
   --muted: #cdd6ff;
   --grid: rgb(255 255 255 / .06);
   /* Vetro (variabili lette da glass.js) */
-  --lg-glass: rgb(10 2 64 / .75);
+  --lg-glass: rgb(29 5 164 / .9); /* dopo il filtro del vetro risulta #1F06AC, l'indaco del pulsante */
   --lg-edge: rgb(255 255 255 / .28);
   --lg-drop: transparent;
   --lg-rim-shine: .55;
@@ -123,7 +123,7 @@ svg.fill { fill: currentColor; stroke: none; }
   backdrop-filter: blur(var(--lg-blur, 3px)) var(--lg-filter, saturate(1.8));
 }
 @media (prefers-reduced-transparency: reduce) {
-  :root { --lg-glass: #120170; }
+  :root { --lg-glass: #1F06AC; }
   [data-theme="light"] { --lg-glass: #ffffff; }
 }
 
@@ -261,7 +261,7 @@ h1 { font: 700 clamp(2.5rem, 7vw, 4.5rem)/1 var(--font-head); letter-spacing: -0
   min-height: 48px; padding: .75rem 1.25rem; border-radius: 999px;
   font: 600 1rem/1.2 var(--font-head); transition: transform .2s ease, background-color .2s ease;
 }
-.btn-solid { background: var(--on-accent); color: var(--accent); }
+.btn-solid { background: #120170; color: var(--accent); } /* blu notte */
 .btn-line { border: 1.5px solid currentColor; }
 .btn-line:hover { background: color-mix(in srgb, var(--on-accent) 8%, transparent); }
 .cta-foot { margin-top: auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--on-accent) 20%, transparent); }

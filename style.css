@@ -16,11 +16,11 @@
   --muted: #cdd6ff;
   --grid: rgb(255 255 255 / .06);
   /* Vetro (variabili lette da glass.js) */
-  --lg-glass: rgb(16 4 90 / .55);
-  --lg-edge: rgb(255 255 255 / .14);
+  --lg-glass: rgb(16 4 90 / .18);
+  --lg-edge: rgb(255 255 255 / .28);
   --lg-drop: transparent;
-  --lg-rim-shine: .22;
-  --lg-blur: 18px;
+  --lg-rim-shine: .55;
+  --lg-blur: 40px;
   --accent: var(--yellow);
   --accent-ink: var(--yellow);
   --quiet-ink: #a9c0ff; /* etichette e decorazioni: il giallo resta per azioni e testo evidenziato */
@@ -40,10 +40,10 @@
   --accent-ink: var(--royal);
   --quiet-ink: var(--royal);
   --grid: rgb(31 6 172 / .06);
-  --lg-glass: rgb(255 255 255 / .72);
+  --lg-glass: rgb(255 255 255 / .3);
   --lg-edge: rgb(31 6 172 / .1);
   --lg-drop: rgb(31 6 172 / .08);
-  --lg-rim-shine: .4;
+  --lg-rim-shine: .7;
   color-scheme: light;
 }
 
@@ -111,8 +111,8 @@ svg.fill { fill: currentColor; stroke: none; }
   background-color: var(--lg-glass);
   background-image: var(--lg-rim, none);
   background-size: 100% 100%;
-  -webkit-backdrop-filter: blur(var(--lg-blur, 3px)) saturate(1.8);
-  backdrop-filter: blur(var(--lg-blur, 3px)) saturate(1.8);
+  -webkit-backdrop-filter: blur(var(--lg-blur, 3px)) saturate(2.4) brightness(1.08);
+  backdrop-filter: blur(var(--lg-blur, 3px)) saturate(2.4) brightness(1.08);
   box-shadow: inset 0 0 0 .5px var(--lg-edge), 0 1px 3px var(--lg-drop);
 }
 .lg-glass[data-rim] { box-shadow: 0 1px 3px var(--lg-drop); }
@@ -156,13 +156,13 @@ svg.fill { fill: currentColor; stroke: none; }
   position: fixed; z-index: 10; left: 50%; bottom: max(1rem, env(safe-area-inset-bottom));
   transform: translateX(-50%);
   display: flex; align-items: center; gap: .375rem; padding: 6px; border-radius: 999px;
-  --lg-blur: 2px; --lg-glass: rgb(16 4 90 / .62);
+  --lg-blur: 10px; --lg-glass: rgb(16 4 90 / .25);
 }
 @media (max-width: 639px) {
   .dock { position: static; transform: none; width: fit-content; margin: 1rem auto 0; }
 }
 @media (min-width: 640px) { body { padding-bottom: 5rem; } } /* spazio per la barra fissa in basso */
-[data-theme="light"] .dock { --lg-glass: rgb(255 255 255 / .65); }
+[data-theme="light"] .dock { --lg-glass: rgb(255 255 255 / .3); }
 .dock .icon-btn { border: 0; }
 .dock .icon-btn:hover, .dock .lang a:not([aria-current]):hover { background: var(--line); }
 .dock-cta {
@@ -175,9 +175,9 @@ svg.fill { fill: currentColor; stroke: none; }
   position: fixed; z-index: 10; top: max(.75rem, env(safe-area-inset-top)); left: 1rem; right: 1rem;
   max-width: calc(1180px - 3rem); margin: 0 auto;
   display: flex; align-items: center; gap: .5rem; padding: 6px 6px 6px 1.25rem; border-radius: 999px;
-  --lg-glass: rgb(16 4 90 / .85);
+  --lg-glass: rgb(16 4 90 / .4);
 }
-[data-theme="light"] .topbar { --lg-glass: rgb(255 255 255 / .85); }
+[data-theme="light"] .topbar { --lg-glass: rgb(255 255 255 / .45); }
 .topbar[inert] { opacity: 0; transform: translateY(calc(-100% - 1rem)); }
 @media (prefers-reduced-motion: no-preference) {
   .topbar { transition: opacity .25s ease, transform .35s cubic-bezier(.16, 1, .3, 1); }

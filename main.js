@@ -87,6 +87,15 @@ try {
   }
 } catch (e) {}
 
+// Barra in basso: scorrendo in giù si toglie per non coprire il testo, scorrendo in su torna
+const dock = document.querySelector('.dock');
+let lastY = scrollY;
+addEventListener('scroll', () => {
+  if (Math.abs(scrollY - lastY) < 8) return;
+  dock.classList.toggle('is-away', scrollY > lastY);
+  lastY = scrollY;
+}, { passive: true });
+
 new IntersectionObserver(([e]) => {
   topbar.inert = e.isIntersecting || e.boundingClientRect.top > 0;
 }).observe(cta);
